@@ -13,8 +13,7 @@ import java.text.DecimalFormat;
  */
 
 public class CalActivity extends AppCompatActivity {
-//    private ActivityMainBinding binding;
-
+    
     private static final char ADDITION = '+';
     private static final char SUBTRACTION = '-';
     private static final char MULTIPLICATION = '*';
@@ -50,8 +49,6 @@ public class CalActivity extends AppCompatActivity {
     private double valueTwo;
 
     private DecimalFormat decimalFormat;
-
-    private boolean sessionEnd = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,15 +202,12 @@ public class CalActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 computeCalculation();
-                System.out.println("editText = " + editText.getText().toString());
-                System.out.println("infoText = " + infoTextView.getText().toString());
                 if (editText.getText().toString().equals("")) {
                     infoTextView.setText(decimalFormat.format(valueOne));
                 } else {
                     infoTextView.setText(infoTextView.getText().toString() + decimalFormat.format(valueTwo) + " = " + decimalFormat.format(valueOne));
                 }
                 CURRENT_ACTION = '0';
-//                sessionEnd = true;
             }
         });
 
@@ -235,8 +229,6 @@ public class CalActivity extends AppCompatActivity {
     }
 
     private void computeCalculation() {
-        System.out.println("before calculation: valueOne = " + valueOne);
-        System.out.println("before calculation: valueTwo = " + valueTwo);
         if(!Double.isNaN(valueOne)) {
             valueTwo = Double.parseDouble("0" + editText.getText().toString());
             editText.setText(null);
@@ -256,7 +248,5 @@ public class CalActivity extends AppCompatActivity {
             }
             catch (Exception ignored){}
         }
-        System.out.println("after calculation: valueOne = " + valueOne);
-        System.out.println("after calculation: valueTwo = " + valueTwo);
     }
 }
